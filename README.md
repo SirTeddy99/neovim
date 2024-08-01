@@ -1,25 +1,37 @@
 # Git with fugitive
 
 [Doc for fugitive](https//github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt)
-- `\<leader>gs` Go into git mode (fugitive)
-##### Git add, commit, and push
+
+    - `\<leader>gs` Go into git mode (fugitive)
+
+## Git add, commit, and push
+
     - `s` Add current file
-- `cc` Commit (opens commit file for message input)
+    - `cc` Commit (opens commit file for message input)
     - `P` Push
-- `co\<leader>` Checkout (set command to `Git checkout` )
-##### Git diff with fugitive
-###### Git diff before push
-- `dp` Ordinary diff (above window)
+    - `co\<leader>` Checkout (set command to `Git checkout` )
+
+## Git diff with fugitive
+
+### Git diff before push
+
+    - `dp` Ordinary diff (above window)
     - `dd` Side-by-side diff
     - `=` Diff in same window
-###### Git diff open window, when ready to push
+
+### Git diff open window, when ready to push
+
     - `o` Open horizontally
     - `gO` Open vertically
-###### Exit commands
+
+### Exit commands
+
     - `bd` Close current window (if screwed and not exiting Neovim)
     - `q` Close current window (normal exit, close Neovim if no other windows)
     - `Ctrl+w o` Close all windows but the current one
-###### Stash commands (create a "local" branch)
+
+### Stash commands (create a "local" branch)
+
     - `czz` Stash changes
     - `czA` Force pop both changes from stash
     - `gu` Use the diff on the left
@@ -27,28 +39,28 @@
 
 ## Jumping and manipulation
 
-##### C command
+### C command
 
     - `ci"` Remove text inside ""
     - `ciw` Remove word
     - `ca"` Remove "" when inside
 
-##### Edit all words
+### Edit all words
 
     - `<space>s` setup %s type of manupilation
 
-##### Jumping
+### Jumping
 
     - `gd` Go to definition
     - `f"` Jump to the first "
     - `F"` Jump backwards to "
     - `Ctrl+d` denne hopper page down
 
-##### Search
+### Search
 
     - `*` Search for word in document (cursor must be on the word)
 
-##### Autofix
+### Autofix
 
     - `\<leader>vca` Autofix with LSP (needs proper setup)
     - `=` Auto indents
@@ -77,6 +89,3 @@
 
     - `crtl + z` go to terminal
     - `fg + enter` to return to nvim
-
-
-
