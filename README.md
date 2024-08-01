@@ -80,7 +80,8 @@
 
 ## Visual-block
 
-[Link to doc](https//neovim.io/doc/user/visual.html)
+[Link to doc](https://neovim.io/doc/user/visual.html)
+
 - `ctrl+v` and hjkl to mark - `gv` mark same area again
 - `c` change text - `d` delete - `y` yank - `<`rm tab - `>`add tab
 - `crtl + c` eller `esc` for å legge til endringene du har skrevet
