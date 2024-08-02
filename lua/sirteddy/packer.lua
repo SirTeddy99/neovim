@@ -12,15 +12,15 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use("AlexvZyl/nordic.nvim")
+--  use("AlexvZyl/nordic.nvim")
 --  use("0xstepit/flow.nvim")
---  use({
---	  'rose-pine/neovim',
---	  as = 'rose-pine',
---	  config = function()
---		  vim.cmd('colorscheme rose-pine')
---	  end
---  })
+  use({
+	  'rose-pine/neovim',
+	  as = 'rose-pine',
+	  config = function()
+		  vim.cmd('colorscheme rose-pine')
+	  end
+  })
 --  use ("sainnhe/everforest")
 --  use ("EdenEast/nightfox.nvim")
 --  use("hachy/eva01.vim")
