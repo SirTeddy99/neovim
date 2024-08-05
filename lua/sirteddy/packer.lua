@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
   use("tpope/vim-fugitive")
   use("airblade/vim-gitgutter")
   use("APZelos/blamer.nvim")
+  
+  use 'EdenEast/nightfox.nvim'
 
   -- init.lua or plugins.lua
   use 'Chiel92/vim-autoformat'
