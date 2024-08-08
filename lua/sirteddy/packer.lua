@@ -14,13 +14,18 @@ return require('packer').startup(function(use)
   }
 --  use("AlexvZyl/nordic.nvim")
 --  use("0xstepit/flow.nvim")
-  use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })
+    use {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        config = function()
+            require('rose-pine').setup({
+                disable_background = true, -- Customize the setup if needed
+            })
+
+            -- Call the function to set the color scheme and highlights
+            ColorMyPencils("rose-pine")
+        end
+    }
 --  use ("sainnhe/everforest")
 --  use ("EdenEast/nightfox.nvim")
 --  use("hachy/eva01.vim")
