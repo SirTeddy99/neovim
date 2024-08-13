@@ -3,10 +3,17 @@
 
 -- Auto-format Terraform files on save and show errors if any
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.tf",
+  pattern = {"*.tf", "**/*.tf"},
   callback = function()
+    -- Temporarily disable file change detection events
+    vim.opt.eventignore = "FileChangedShell"
+
     local file = vim.fn.expand('%')
     local result = vim.fn.system('terraform fmt ' .. file)
+
+    -- Re-enable file change detection events
+    vim.opt.eventignore = ""
+
     if vim.v.shell_error ~= 0 then
       vim.api.nvim_err_writeln('terraform fmt error:\n' .. result)
     end

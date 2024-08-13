@@ -34,3 +34,6 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
+vim.opt.cursorline = true
+-- Highlight current line number
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#5c6370" })
