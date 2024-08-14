@@ -34,3 +34,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end
 })
+
+-- Auto-format Go files on save and show errors if any
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.go"},
+  callback = function()
+    -- Temporarily disable file change detection events
+    vim.opt.eventignore = "FileChangedShell"
+
+    local file = vim.fn.expand('%')
+    local result = vim.fn.system('gofmt -w ' .. file)
+
+    -- Re-enable file change detection events
+    vim.opt.eventignore = ""
+
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_err_writeln('gofmt error:\n' .. result)
+    end
+  end
+})

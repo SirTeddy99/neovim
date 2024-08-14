@@ -37,3 +37,19 @@ vim.opt.colorcolumn = ""
 vim.opt.cursorline = true
 -- Highlight current line number
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#5c6370" })
+
+
+-----------------------------------
+-- Comment setup
+-----------------------------------
+
+-- Set commentstring for Terraform files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terraform",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end
+})
+
+
+
