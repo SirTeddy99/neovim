@@ -68,3 +68,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+-- Map ,s to surround with quotes in visual mode
+vim.api.nvim_set_keymap('v', ',s"', '<ESC>`<i"<ESC>`>a"<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ",s'", "<ESC>`<i'<ESC>`>a'<ESC>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s(', '<ESC>`<i(<ESC>`>a)<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s{', '<ESC>`<i{<ESC>`>a}<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s[', '<ESC>`<i[<ESC>`>a]<ESC>', { noremap = true, silent = true })
