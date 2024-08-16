@@ -4,15 +4,15 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use 'tpope/vim-surround'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.6',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
-  }
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
+    use 'tpope/vim-surround'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.6',
+        -- or                            , branch = '0.1.x',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
     use {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -25,39 +25,39 @@ return require('packer').startup(function(use)
             ColorMyPencils("rose-pine")
         end
     }
-  use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
-  use("nvim-treesitter/playground")
-  use("theprimeagen/harpoon")
-  use("mbbill/undotree")
-  use("tpope/vim-fugitive")
-  use("airblade/vim-gitgutter")
-  use("APZelos/blamer.nvim")
-  use("EdenEast/nightfox.nvim")
+    use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
+    use("nvim-treesitter/playground")
+    use("theprimeagen/harpoon")
+    use("mbbill/undotree")
+    use("tpope/vim-fugitive")
+    use("airblade/vim-gitgutter")
+    use("APZelos/blamer.nvim")
+    use("EdenEast/nightfox.nvim")
 
-  -- init.lua or plugins.lua
-  use("Chiel92/vim-autoformat")
-  
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
-	  requires = {
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},
-		  {'williamboman/mason.nvim'},
-		  {'williamboman/mason-lspconfig.nvim'},
+    -- init.lua or plugins.lua
+    use("Chiel92/vim-autoformat")
 
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-buffer'},
-		  {'hrsh7th/cmp-path'},
-		  {'saadparwaiz1/cmp_luasnip'},
-		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'hrsh7th/cmp-nvim-lua'},
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
-		  -- Snippets
-		  {'L3MON4D3/LuaSnip'},
-		  {'rafamadriz/friendly-snippets'},
-	  }
-  }
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+        }
+    }
 end)
-  
+
