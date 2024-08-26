@@ -56,3 +56,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_set_keymap('v', '<leader>q', [[:s/^/“/<CR>gv:s/$/“,<CR>]], { noremap = true, silent = true })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3ed071e (Yeet)
