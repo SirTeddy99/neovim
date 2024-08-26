@@ -51,5 +51,5 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-
+vim.api.nvim_set_keymap('v', '<leader>q', [[:s/^/“/<CR>gv:s/$/“,<CR>]], { noremap = true, silent = true })
 
