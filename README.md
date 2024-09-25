@@ -90,3 +90,15 @@
 
 - `crtl + z` go to terminal
 - `fg + enter` to return to nvim
+
+## splitt view
+
+open "find files"
+
+- `ctrl + v` (vertical splitt)
+- `ctrl + h` (horizontal splitt)
+- `Ctrl-w r` This will rotate the windows in a circular manner.
+- `Ctrl-w +` to increase the height of the current window.
+- `Ctrl-w -` to decrease the height.
+- `Ctrl-w >` to increase the width.
+- `Ctrl-w <` to decrease the width.
