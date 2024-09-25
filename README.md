@@ -102,5 +102,3 @@ open "find files"
 - `Ctrl-w -` to decrease the height.
 - `Ctrl-w >` to increase the width.
 - `Ctrl-w <` to decrease the width.
-
-
