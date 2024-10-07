@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
 
     -- init.lua or plugins.lua
     use("Chiel92/vim-autoformat")
+    use { 'akinsho/toggleterm.nvim', tag = '*' }
 
     use {
         'VonHeikemen/lsp-zero.nvim',
