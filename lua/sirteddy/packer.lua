@@ -10,7 +10,6 @@ return require('packer').startup(function(use)
     use 'jose-elias-alvarez/null-ls.nvim'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.6',
-        -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {
@@ -21,8 +20,13 @@ return require('packer').startup(function(use)
                 disable_background = true, -- Customize the setup if needed
             })
 
-            -- Call the function to set the color scheme and highlights
-            ColorMyPencils("rose-pine")
+            -- Lazy load the color scheme after Neovim finishes loading
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function()
+                    -- Call ColorMyPencils after everything is loaded
+                    ColorMyPencils("rose-pine")
+                end
+            })
         end
     }
     use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
@@ -61,4 +65,3 @@ return require('packer').startup(function(use)
         }
     }
 end)
-

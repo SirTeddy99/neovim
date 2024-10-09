@@ -135,7 +135,7 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/mason.nvim"
   },
   neovim = {
-    config = { "\27LJ\2\nm\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0'\2\1\0B\0\2\1K\0\1\0\19ColorMyPencils\1\0\1\23disable_background\2\nsetup\14rose-pine\frequire\0" },
+    config = { "\27LJ\2\nº\1\0\1\6\0\n\0\23\14\0\0\0X\1\1€'\0\0\0006\1\1\0009\1\2\0019\1\3\1\18\3\0\0B\1\2\0016\1\1\0009\1\4\0019\1\5\1)\3\0\0'\4\6\0005\5\a\0B\1\4\0016\1\1\0009\1\4\0019\1\5\1)\3\0\0'\4\b\0005\5\t\0B\1\4\1K\0\1\0\1\0\1\abg\tnone\16NormalFloat\1\0\1\abg\tnone\vNormal\16nvim_set_hl\bapi\16colorscheme\bcmd\bvim\14rose-pinec\1\0\4\0\5\0\v3\0\0\0006\1\1\0'\3\2\0B\1\2\0029\1\3\0015\3\4\0B\1\2\1\18\1\0\0'\3\2\0B\1\2\1K\0\1\0\1\0\1\23disable_background\2\nsetup\14rose-pine\frequire\0\0" },
     loaded = true,
     path = "/Users/m01153/.local/share/nvim/site/pack/packer/start/neovim",
     url = "https://github.com/rose-pine/neovim"
@@ -220,7 +220,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: neovim
 time([[Config for neovim]], true)
-try_loadstring("\27LJ\2\nm\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\4\0'\2\1\0B\0\2\1K\0\1\0\19ColorMyPencils\1\0\1\23disable_background\2\nsetup\14rose-pine\frequire\0", "config", "neovim")
+try_loadstring("\27LJ\2\nº\1\0\1\6\0\n\0\23\14\0\0\0X\1\1€'\0\0\0006\1\1\0009\1\2\0019\1\3\1\18\3\0\0B\1\2\0016\1\1\0009\1\4\0019\1\5\1)\3\0\0'\4\6\0005\5\a\0B\1\4\0016\1\1\0009\1\4\0019\1\5\1)\3\0\0'\4\b\0005\5\t\0B\1\4\1K\0\1\0\1\0\1\abg\tnone\16NormalFloat\1\0\1\abg\tnone\vNormal\16nvim_set_hl\bapi\16colorscheme\bcmd\bvim\14rose-pinec\1\0\4\0\5\0\v3\0\0\0006\1\1\0'\3\2\0B\1\2\0029\1\3\0015\3\4\0B\1\2\1\18\1\0\0'\3\2\0B\1\2\1K\0\1\0\1\0\1\23disable_background\2\nsetup\14rose-pine\frequire\0\0", "config", "neovim")
 time([[Config for neovim]], false)
 
 _G._packer.inside_compile = false
