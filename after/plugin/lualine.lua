@@ -156,7 +156,7 @@ ins_left {
 }
 
 ins_left {
-  -- Lsp server name .
+  -- LSP server names.
   function()
     local msg = 'No Active Lsp'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -164,13 +164,16 @@ ins_left {
     if next(clients) == nil then
       return msg
     end
+    -- Table to hold names of active clients
+    local client_names = {}
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
+        table.insert(client_names, client.name)
       end
     end
-    return msg
+    -- Return concatenated names or the message if none found
+    return #client_names > 0 and table.concat(client_names, ', ') or msg
   end,
   icon = ' LSP:',
   color = { fg = '#ffffff', gui = 'bold' },
