@@ -47,13 +47,13 @@ vim.api.nvim_set_hl(0, "LineNr", { fg = "#5c6370" })
 -- Comment setup
 -----------------------------------
 
--- -- Set commentstring for Terraform files
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "terraform",
---   callback = function()
---     vim.bo.commentstring = "# %s"
---   end
--- })
+-- Set commentstring for Terraform files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terraform",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end
+})
 
 vim.api.nvim_set_keymap('v', '<leader>q', [[:s/^/“/<CR>gv:s/$/“,<CR>]], { noremap = true, silent = true })
 <<<<<<< HEAD
