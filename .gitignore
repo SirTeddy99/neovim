@@ -1,0 +1,4 @@
+plugin/*
+plugin
+!after/plugin
+!after/plugin/*

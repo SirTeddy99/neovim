@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -42,7 +41,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.api.nvim_set_keymap('n', '<leader>b', ':BlamerToggle<CR>', { noremap = true, silent = true })
@@ -68,3 +66,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+-- Map ,s to surround with quotes in visual mode
+vim.api.nvim_set_keymap('v', ',s"', '<ESC>`<i"<ESC>`>a"<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ",s'", "<ESC>`<i'<ESC>`>a'<ESC>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s(', '<ESC>`<i(<ESC>`>a)<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s{', '<ESC>`<i{<ESC>`>a}<ESC>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',s[', '<ESC>`<i[<ESC>`>a]<ESC>', { noremap = true, silent = true })

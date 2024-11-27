@@ -2,6 +2,10 @@
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 -- vim.opt.guicursor = ""
 
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileencodings = "utf-8"
+
 vim.opt.clipboard:append('unnamedplus')
 
 vim.opt.nu = true
@@ -34,3 +38,21 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
+vim.opt.cursorline = true
+-- Highlight current line number
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#5c6370" })
+
+
+-----------------------------------
+-- Comment setup
+-----------------------------------
+
+-- Set commentstring for Terraform files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terraform",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end
+})
+
+vim.api.nvim_set_keymap('v', '<leader>q', [[:s/^/“/<CR>gv:s/$/“,<CR>]], { noremap = true, silent = true })
