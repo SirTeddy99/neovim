@@ -6,6 +6,7 @@ return {
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
             "marilari88/neotest-vitest",
+            "nvim-neotest/nvim-nio",
             "nvim-neotest/neotest-plenary",
         },
         config = function()
@@ -31,4 +32,3 @@ return {
         end,
     },
 }
-
