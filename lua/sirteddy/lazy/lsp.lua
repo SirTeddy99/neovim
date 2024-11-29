@@ -105,26 +105,30 @@ return {
         })
 
         -- Completion setup using nvim-cmp
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
+        local luasnip = require("luasnip")
+        -- Setup nvim-cmp for autocompletion
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For luasnip users.
+                    luasnip.lsp_expand(args.body)  -- Use LuaSnip for expanding snippets
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-Space>"] = cmp.mapping.complete(),
+                ["<C-n>"] = cmp.mapping.select_next_item(),  -- Select next item
+                ["<C-p>"] = cmp.mapping.select_prev_item(),  -- Select previous item
+                ["<CR>"] = cmp.mapping.confirm({ select = true }),  -- Confirm selection
+                ["<C-Space>"] = cmp.mapping.complete(),  -- Manually trigger completion
             }),
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users
+                { name = "nvim_lsp" },  -- LSP completion
+                { name = "luasnip" },    -- Snippets (LuaSnip)
             }, {
-                { name = 'buffer' },
-            })
+                { name = "buffer" },     -- Completion from buffer
+            }),
         })
+
+        -- Optionally, configure LuaSnip (e.g., for snippets from files)
+        require("luasnip.loaders.from_vscode").lazy_load()  -- Load VSCode-style snippets
 
         -- Diagnostic configuration (floating windows)
         vim.diagnostic.config({
