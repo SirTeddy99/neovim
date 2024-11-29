@@ -38,6 +38,7 @@ return {
                 "lua_ls",           -- Lua Language Server
                 "rust_analyzer",    -- Rust Language Server
                 "tsserver",         -- TypeScript/JavaScript Server
+                "gopls",
                 "terraform-ls",
             },
             handlers = {
@@ -82,6 +83,23 @@ return {
                             }
                         }
                     }
+                end,
+                -- Custom handler for gopls
+                ["gopls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.gopls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            gopls = {
+                                analyses = {
+                                    unusedparams = true,  -- Enable unused parameter analysis
+                                },
+                                staticcheck = true,    -- Enable staticcheck
+                                gofumpt = true,       -- Enable gofumpt formatting
+                                usePlaceholders = true,  -- Enable placeholders in Go for struct tags
+                            },
+                        },
+                    })
                 end,
             }
         })
@@ -169,4 +187,3 @@ return {
         })
     end
 }
-
