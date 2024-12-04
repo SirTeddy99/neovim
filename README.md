@@ -102,3 +102,18 @@ open "find files"
 - `Ctrl-w -` to decrease the height.
 - `Ctrl-w >` to increase the width.
 - `Ctrl-w <` to decrease the width.
+
+## linters used
+
+  Installed
+    ◍ goimports
+    ◍ golangci-lint
+    ◍ gopls
+    ◍ jq
+    ◍ lua-language-server lua_ls
+    ◍ revive
+    ◍ rust-analyzer rust_analyzer
+    ◍ shellcheck
+    ◍ staticcheck
+    ◍ terraform-ls terraformls
+    ◍ tflint
