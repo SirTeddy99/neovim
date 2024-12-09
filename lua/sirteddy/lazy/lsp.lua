@@ -40,7 +40,6 @@ return {
                 "tsserver",         -- TypeScript/JavaScript Server
                 "gopls",
                 "terraform-ls",
-                "yamlls",
             },
             handlers = {
                 -- Default handler for all servers
@@ -106,6 +105,7 @@ return {
                 ["yamlls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.yamlls.setup({
+                        cmd = {"/opt/homebrew/bin/yaml-language-server", "--stdio"},
                         capabilities = capabilities,
                         settings = {
                             yaml = {
