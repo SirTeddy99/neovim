@@ -40,6 +40,7 @@ return {
                 "tsserver",         -- TypeScript/JavaScript Server
                 "gopls",
                 "terraform-ls",
+                "yamlls",
             },
             handlers = {
                 -- Default handler for all servers
@@ -97,6 +98,22 @@ return {
                                 staticcheck = true,    -- Enable staticcheck
                                 gofumpt = true,       -- Enable gofumpt formatting
                                 usePlaceholders = true,  -- Enable placeholders in Go for struct tags
+                            },
+                        },
+                    })
+                end,
+                -- Custom handler for yamlls
+                ["yamlls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.yamlls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            yaml = {
+                                schemas = {
+                                    ["https://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                                    ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
+                                },
+                                validate = true,
                             },
                         },
                     })
