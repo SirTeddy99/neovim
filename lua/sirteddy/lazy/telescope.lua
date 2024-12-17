@@ -11,7 +11,23 @@ return {
         require('telescope').setup({})
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+
+        -- Custom function to find files from the project root
+        local function find_files_from_project_root()
+            -- Get the Git root directory
+            local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+
+            -- Fallback to the current working directory if not in a Git repository
+            local root_dir = git_root ~= "" and git_root or vim.fn.getcwd()
+
+            -- Call Telescope's find_files with the determined root directory
+            builtin.find_files({ cwd = root_dir })
+        end
+
+        -- Override <leader>pf to use the custom function
+        vim.keymap.set('n', '<leader>pf', find_files_from_project_root, {})
+
+        -- Other mappings
         vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<leader>pws', function()
             local word = vim.fn.expand("<cword>")
@@ -27,4 +43,3 @@ return {
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
     end
 }
-
