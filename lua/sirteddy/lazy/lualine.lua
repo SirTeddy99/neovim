@@ -38,6 +38,11 @@ return {
             end,
         }
 
+        -- Clock function
+        local function clock()
+            return os.date('%H:%M')
+        end
+
         -- Config
         local config = {
             options = {
@@ -200,6 +205,12 @@ return {
                 removed = { fg = colors.red },
             },
             cond = conditions.hide_in_width,
+        }
+
+        ins_right {
+            clock,
+            color = { fg = colors.magenta, gui = 'bold' },
+            padding = { left = 1, right = 1 },
         }
 
         ins_right {
