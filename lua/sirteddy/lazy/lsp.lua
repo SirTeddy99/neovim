@@ -126,6 +126,15 @@ return {
                 { name = "buffer" },     -- Completion from buffer
             }),
         })
+        luasnip.add_snippets("go", {
+            luasnip.snippet("iferr", {
+                luasnip.text_node({
+                    "if err != nil {",
+                    '\tlog.Fatalln("error happens...", err)',
+                    "}"
+                }),
+            }),
+        })
 
         -- Optionally, configure LuaSnip (e.g., for snippets from files)
         require("luasnip.loaders.from_vscode").lazy_load()  -- Load VSCode-style snippets
