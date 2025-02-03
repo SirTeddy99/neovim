@@ -1,0 +1,29 @@
+-- return {
+--     "github/copilot.vim",
+--     lazy = true,                      -- Prevent Copilot from loading on startup
+--     cmd = "Copilot",                  -- Load Copilot only when running `:Copilot`
+--     init = function()
+--         vim.g.copilot_enabled = false -- Ensure it's disabled at start
+--     end,
+--     config = function()
+--         -- Set up a toggle keymap
+--         vim.api.nvim_set_keymap("n", "<leader>cp", ":CopilotToggle<CR>", { noremap = true, silent = true })
+--
+--         vim.api.nvim_create_user_command("CopilotToggle", function()
+--             -- Manually load the Copilot plugin if it's not loaded
+--             if not vim.g.loaded_copilot then
+--                 require("lazy").load({ plugins = { "github/copilot.vim" } })
+--             end
+--
+--             if vim.g.copilot_enabled then
+--                 vim.cmd("Copilot disable")
+--                 vim.g.copilot_enabled = false
+--                 print("Copilot Disabled")
+--             else
+--                 vim.cmd("Copilot enable")
+--                 vim.g.copilot_enabled = true
+--                 print("Copilot Enabled")
+--             end
+--         end, {})
+--     end
+-- }

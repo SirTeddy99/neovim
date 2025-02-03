@@ -35,9 +35,9 @@ return {
         -- Mason-LSPConfig setup
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",           -- Lua Language Server
-                "rust_analyzer",    -- Rust Language Server
-                "tsserver",         -- TypeScript/JavaScript Server
+                "lua_ls",        -- Lua Language Server
+                "rust_analyzer", -- Rust Language Server
+                "tsserver",      -- TypeScript/JavaScript Server
                 "gopls",
                 "terraform-ls",
             },
@@ -54,7 +54,7 @@ return {
                         on_attach = function(client)
                             -- Forcefully remove semantic tokens support if `terraform-ls` ignores settings
                             client.server_capabilities.semanticTokensProvider = nil
-                        end,                    }
+                        end, }
                 end,
 
                 -- Custom handler for lua_ls
@@ -92,10 +92,10 @@ return {
                         settings = {
                             gopls = {
                                 analyses = {
-                                    unusedparams = true,  -- Enable unused parameter analysis
+                                    unusedparams = true, -- Enable unused parameter analysis
                                 },
-                                staticcheck = true,    -- Enable staticcheck
-                                gofumpt = true,       -- Enable gofumpt formatting
+                                staticcheck = true,      -- Enable staticcheck
+                                gofumpt = true,          -- Enable gofumpt formatting
                                 usePlaceholders = true,  -- Enable placeholders in Go for struct tags
                             },
                         },
@@ -110,20 +110,20 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    luasnip.lsp_expand(args.body)  -- Use LuaSnip for expanding snippets
+                    luasnip.lsp_expand(args.body) -- Use LuaSnip for expanding snippets
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ["<C-n>"] = cmp.mapping.select_next_item(),  -- Select next item
-                ["<C-p>"] = cmp.mapping.select_prev_item(),  -- Select previous item
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),  -- Confirm selection
-                ["<C-Space>"] = cmp.mapping.complete(),  -- Manually trigger completion
+                ["<C-n>"] = cmp.mapping.select_next_item(),        -- Select next item
+                ["<C-p>"] = cmp.mapping.select_prev_item(),        -- Select previous item
+                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm selection
+                ["<C-Space>"] = cmp.mapping.complete(),            -- Manually trigger completion
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },  -- LSP completion
-                { name = "luasnip" },    -- Snippets (LuaSnip)
+                { name = "nvim_lsp" }, -- LSP completion
+                { name = "luasnip" },  -- Snippets (LuaSnip)
             }, {
-                { name = "buffer" },     -- Completion from buffer
+                { name = "buffer" },   -- Completion from buffer
             }),
         })
         luasnip.add_snippets("go", {
@@ -135,9 +135,23 @@ return {
                 }),
             }),
         })
+        luasnip.add_snippets("go", {
+            luasnip.snippet("startmain", {
+                luasnip.text_node({
+                    "// Package main is used for...",
+                    "package main",
+                    " ",
+                    'import "fmt"',
+                    " ",
+                    "func main() {",
+                    '\tfmt.Println("Hello")',
+                    "}"
+                }),
+            }),
+        })
 
         -- Optionally, configure LuaSnip (e.g., for snippets from files)
-        require("luasnip.loaders.from_vscode").lazy_load()  -- Load VSCode-style snippets
+        require("luasnip.loaders.from_vscode").lazy_load() -- Load VSCode-style snippets
 
         -- Diagnostic configuration (floating windows)
         vim.diagnostic.config({
@@ -156,7 +170,7 @@ return {
 
         null_ls.setup({
             autostart = true,
-            debug = true,  -- Enable debugging for better logging
+            debug = true, -- Enable debugging for better logging
             sources = {
                 null_ls.builtins.diagnostics.markdownlint,
                 null_ls.builtins.diagnostics.golangci_lint,
@@ -171,12 +185,12 @@ return {
                 null_ls.builtins.formatting.terraform_fmt,
             },
             on_attach = function(client, bufnr)
-                print("Attached null-ls to buffer " .. bufnr)  -- Debug message to confirm attachment
+                print("Attached null-ls to buffer " .. bufnr) -- Debug message to confirm attachment
 
                 -- Set working directory to the project's root
                 local function set_root_dir()
                     local root_patterns = { "go.mod", "main.go" }
-                    local dir = vim.fn.expand("%:p:h") -- Start from the file's directory
+                    local dir = vim.fn.expand("%:p:h")                        -- Start from the file's directory
                     for _, pattern in ipairs(root_patterns) do
                         local root_dir = vim.fn.findfile(pattern, dir .. ";") -- Look upwards for go.mod/main.go
                         if root_dir and root_dir ~= "" then
@@ -186,14 +200,14 @@ return {
                     end
                 end
 
-                set_root_dir()  -- Automatically set working directory to the project's root
+                set_root_dir() -- Automatically set working directory to the project's root
 
                 -- Format on save - globally applied to all relevant file types
                 vim.api.nvim_create_autocmd("BufWritePre", {
                     group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-                    pattern = { "*.go", "*.json", "*.md", "*.tf" },  -- Adjust based on your file types
+                    pattern = { "*.go", "*.json", "*.md", "*.tf" }, -- Adjust based on your file types
                     callback = function()
-                        vim.lsp.buf.format({ async = false })  -- Format synchronously on save
+                        vim.lsp.buf.format({ async = false })       -- Format synchronously on save
                     end,
                 })
             end,
