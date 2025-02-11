@@ -40,7 +40,7 @@ return {
         vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
 
         -- Keybinding for switching to 'main' and pulling (Ctrl+M)
-        vim.keymap.set("n", "<C-M>", ':Git fetch && Git checkout main && Git pull --rebase=interactive<CR>', { noremap = true, silent = true })
+        vim.keymap.set("n", "<C-M>", ':Git checkout main | Git pull --ff-only<CR>', { noremap = true, silent = true })
     end
 }
 
