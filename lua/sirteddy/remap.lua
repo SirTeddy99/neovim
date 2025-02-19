@@ -74,16 +74,16 @@ vim.api.nvim_set_keymap('v', ',s(', '<ESC>`<i(<ESC>`>a)<ESC>', { noremap = true,
 vim.api.nvim_set_keymap('v', ',s{', '<ESC>`<i{<ESC>`>a}<ESC>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',s[', '<ESC>`<i[<ESC>`>a]<ESC>', { noremap = true, silent = true })
 
--- DELVE go
-local dap = require('dap')
-
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
-vim.keymap.set('n', '<F10>', function() dap.step_over() end)
-vim.keymap.set('n', '<F11>', function() dap.step_into() end)
-vim.keymap.set('n', '<F12>', function() dap.step_out() end)
-vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
-vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
-vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
-vim.keymap.set('n', '<Leader>dt', function() require('dap-go').debug_test() end) -- Debug Go test
-
+-- -- DELVE go
+-- local dap = require('dap')
+--
+-- vim.keymap.set('n', '<F5>', function() dap.continue() end)
+-- vim.keymap.set('n', '<F10>', function() dap.step_over() end)
+-- vim.keymap.set('n', '<F11>', function() dap.step_into() end)
+-- vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+-- vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end)
+-- vim.keymap.set('n', '<Leader>dB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+-- vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
+-- vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
+-- vim.keymap.set('n', '<Leader>dt', function() require('dap-go').debug_test() end) -- Debug Go test
+--

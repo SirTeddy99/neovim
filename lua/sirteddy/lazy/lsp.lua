@@ -36,10 +36,8 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",        -- Lua Language Server
-                "rust_analyzer", -- Rust Language Server
-                "tsserver",      -- TypeScript/JavaScript Server
-                "gopls",
-                "terraform-ls",
+                "gopls",         -- Go Language Server
+                "terraformls"    -- Terraform Language Server (correct)
             },
             handlers = {
                 -- Default handler for all servers
@@ -72,7 +70,7 @@ return {
                     }
                 end,
                 -- Custom handler for terraform-ls
-                ["terraform-ls"] = function()
+                ["terraformls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.terraformls.setup {
                         capabilities = capabilities,
