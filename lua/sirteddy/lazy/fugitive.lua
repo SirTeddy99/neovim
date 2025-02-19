@@ -39,8 +39,8 @@ return {
         vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
         vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
 
-        -- Keybinding for switching to 'main' and pulling (Ctrl+M)
-        vim.keymap.set("n", "<C-M>", ':Git checkout main | Git pull --ff-only<CR>', { noremap = true, silent = true })
+        -- Keybinding for switching to 'main' and pulling (<leader>gm)
+        vim.keymap.set("n", "<leader>gm", ':Git checkout main | Git pull --ff-only<CR>', { noremap = true, silent = true })
     end
 }
 
