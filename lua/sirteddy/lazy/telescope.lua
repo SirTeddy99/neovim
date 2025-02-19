@@ -1,14 +1,22 @@
 return {
     "nvim-telescope/telescope.nvim",
-
     tag = "0.1.5",
-
     dependencies = {
         "nvim-lua/plenary.nvim"
     },
-
     config = function()
-        require('telescope').setup({})
+        require('telescope').setup({
+            defaults = {
+                -- Include hidden files (dotfiles)
+                file_ignore_patterns = {
+                    -- Add any files or patterns you want to ignore here
+                    "%.git/", -- Ignore git folders
+                    "%.DS_Store", -- macOS-specific files
+                    "%.jpg", "%.jpeg", "%.png", -- Example: ignoring image files
+                    -- You can also add .gitlab-ci.yml here if you want to exclude it
+                },
+            }
+        })
 
         local builtin = require('telescope.builtin')
 
@@ -21,7 +29,7 @@ return {
             local root_dir = git_root ~= "" and git_root or vim.fn.getcwd()
 
             -- Call Telescope's find_files with the determined root directory
-            builtin.find_files({ cwd = root_dir })
+            builtin.find_files({ cwd = root_dir, hidden = true })  -- 'hidden' option set to true
         end
 
         -- Override <leader>pf to use the custom function
@@ -43,3 +51,4 @@ return {
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
     end
 }
+

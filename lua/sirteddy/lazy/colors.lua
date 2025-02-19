@@ -37,6 +37,9 @@ return {
         end
     },
     {
+        "rockerBOO/boo-colorscheme-nvim",
+    },
+    {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
