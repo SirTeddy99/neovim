@@ -43,7 +43,7 @@ return {
         vim.keymap.set("n", "<leader>gm", ':Git checkout main | Git pull --ff-only<CR>', { noremap = true, silent = true })
 
         vim.keymap.set("n", "<leader>gp", function()
-            vim.cmd('Git push -o merge_request.create -o merge_request.assign="<your-username>" -o merge_request.description="Auto-created MR" -o merge_request.ready')
+            vim.cmd('Git push -o merge_request.create -o merge_request.assign="@TorEdvard.Roysland" -o merge_request.ready')
         end, { desc = "GitLab MR Push" })
 
     end
