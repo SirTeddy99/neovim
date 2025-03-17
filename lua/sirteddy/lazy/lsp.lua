@@ -170,7 +170,9 @@ return {
             autostart = true,
             debug = true, -- Enable debugging for better logging
             sources = {
-                null_ls.builtins.diagnostics.markdownlint,
+                null_ls.builtins.diagnostics.markdownlint.with({
+                    filetypes = { "markdown", "vimwiki" }, -- Add "vimwiki" support
+                }),
                 null_ls.builtins.diagnostics.golangci_lint,
                 null_ls.builtins.diagnostics.staticcheck,
                 null_ls.builtins.formatting.goimports,
