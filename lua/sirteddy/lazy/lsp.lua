@@ -37,7 +37,15 @@ return {
             ensure_installed = {
                 "lua_ls",        -- Lua Language Server
                 "gopls",         -- Go Language Server
-                "terraformls"    -- Terraform Language Server (correct)
+                "terraformls",    -- Terraform Language Server (correct)
+                "goimports",
+                "golangci-lint",
+                "gopls",
+                "markdownlint",
+                "revive",
+                "shellcheck",
+                "staticcheck",
+                "tflint"
             },
             handlers = {
                 -- Default handler for all servers
