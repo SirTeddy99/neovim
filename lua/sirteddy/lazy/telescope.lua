@@ -7,13 +7,10 @@ return {
     config = function()
         require('telescope').setup({
             defaults = {
-                -- include hidden files (dotfiles)
                 file_ignore_patterns = {
-                    -- add any files or patterns you want to ignore here
                     "%.git/", -- ignore git folders
                     "%.ds_store", -- macos-specific files
                     "%.jpg", "%.jpeg", "%.png", -- example: ignoring image files
-                    -- you can also add .gitlab-ci.yml here if you want to exclude it
                 },
             }
         })
