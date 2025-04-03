@@ -183,6 +183,7 @@ return {
 				null_ls.builtins.formatting.shfmt,
 				-- null_ls.builtins.diagnostics.jsonlint,
 				-- null_ls.builtins.formatting.jq,
+				null_ls.builtins.formatting.prettier,
 			},
 			on_attach = function(client, bufnr)
 				print("Attached null-ls to buffer " .. bufnr) -- Debug message to confirm attachment
