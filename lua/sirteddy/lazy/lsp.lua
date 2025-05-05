@@ -119,6 +119,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" }, -- LSP completion
 				{ name = "luasnip" }, -- Snippets (LuaSnip)
+				{ name = "path" }, -- Path completion (file and directory)
 			}, {
 				{ name = "buffer" }, -- Completion from buffer
 			}),
