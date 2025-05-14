@@ -98,15 +98,19 @@ return {
 						},
 					})
 				end,
-				["fish"] = function()
-					require("lspconfig").fish.setup({
-						cmd = { "fish-lsp" },
-						filetypes = { "fish" },
-						root_dir = require("lspconfig.util").find_git_ancestor,
-						capabilities = capabilities,
-					})
-				end,
 			},
+		})
+
+		-- Start fish-lsp when opening a fish file
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "fish",
+			callback = function()
+				vim.lsp.start({
+					name = "fish-lsp",
+					cmd = { "fish-lsp", "start" },
+					cmd_env = { fish_lsp_show_client_popups = false },
+				})
+			end,
 		})
 
 		-- Completion setup using nvim-cmp
@@ -219,6 +223,11 @@ return {
 					callback = function()
 						vim.lsp.buf.format({ async = false }) -- Format synchronously on save
 					end,
+				})
+				-- Set fish filetype explicitly for .fish files
+				vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+					pattern = "*.fish",
+					command = "set filetype=fish",
 				})
 			end,
 		})
