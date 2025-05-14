@@ -98,6 +98,14 @@ return {
 						},
 					})
 				end,
+				["fish"] = function()
+					require("lspconfig").fish.setup({
+						cmd = { "fish-lsp" },
+						filetypes = { "fish" },
+						root_dir = require("lspconfig.util").find_git_ancestor,
+						capabilities = capabilities,
+					})
+				end,
 			},
 		})
 
