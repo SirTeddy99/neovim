@@ -6,7 +6,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileencodings = "utf-8"
 
-vim.opt.clipboard:append("unnamedplus")
+-- one clipboard to rule them all:
+-- vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true

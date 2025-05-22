@@ -37,6 +37,9 @@ return {
 			{ noremap = true, silent = true }
 		)
 
+		-- Keybinding for fetching 'main' and mergin in branch (<leader>fm)
+		vim.keymap.set("n", "<leader>gu", ":!git fetch && git merge origin/main<CR>", { noremap = true, silent = true })
+
 		vim.keymap.set("n", "<leader>gp", function()
 			vim.cmd(
 				'Git push -o merge_request.create -o merge_request.assign="@TorEdvard.Roysland" -o merge_request.ready'
