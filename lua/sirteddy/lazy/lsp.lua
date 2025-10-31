@@ -33,27 +33,20 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls", -- Lua Language Server
-				"gopls", -- Go Language Server
-				"terraformls", -- Terraform Language Server (correct)
-				"tflint",
+				"groovyls",
+				"powershell_es",
 			},
 			handlers = {
-				-- Default handler for all servers
+				-- Default handler (no semanticTokensProvider removal here)
 				function(server_name)
 					require("lspconfig")[server_name].setup({
 						capabilities = capabilities,
 						settings = {
-							terraform = {
-								semanticTokens = false, -- Explicitly disable semantic tokens
-							},
+							terraform = { semanticTokens = false },
 						},
-						on_attach = function(client)
-							-- Forcefully remove semantic tokens support if `terraform-ls` ignores settings
-							client.server_capabilities.semanticTokensProvider = nil
-						end,
+						-- remove the client.server_capabilities.semanticTokensProvider = nil from here
 					})
 				end,
-
 				-- Custom handler for lua_ls
 				["lua_ls"] = function()
 					local lspconfig = require("lspconfig")
@@ -68,17 +61,15 @@ return {
 						},
 					})
 				end,
-				-- Custom handler for terraform-ls
+				-- terraformls handler (do the removal here instead)
 				["terraformls"] = function()
 					local lspconfig = require("lspconfig")
 					lspconfig.terraformls.setup({
 						capabilities = capabilities,
-						settings = {
-							terraform = {
-								-- Disable semantic tokens if problematic
-								semanticTokens = false,
-							},
-						},
+						settings = { terraform = { semanticTokens = false } },
+						on_attach = function(client)
+							client.server_capabilities.semanticTokensProvider = nil
+						end,
 					})
 				end,
 				-- Custom handler for gopls
@@ -98,6 +89,29 @@ return {
 						},
 					})
 				end,
+				["groovyls"] = function()
+					require("lspconfig").groovyls.setup({
+						capabilities = capabilities,
+					})
+				end,
+				["powershell_es"] = function()
+					local lspconfig = require("lspconfig")
+					local bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
+
+					lspconfig.powershell_es.setup({
+						capabilities = capabilities,
+						-- lspconfig’s powershell_es can derive the full Start-EditorServices command
+						-- when you pass the bundle_path to the PSES folder Mason installed:
+						bundle_path = bundle_path,
+
+						-- Recommended on WSL so profile scripts don’t slow or block startup:
+						init_options = { enableProfileLoading = false },
+
+						-- Use pwsh inside WSL. If you prefer the Windows-side shell, set "powershell.exe".
+						shell = "pwsh",
+						filetypes = { "ps1", "psm1", "psd1" },
+					})
+				end,
 			},
 		})
 
@@ -110,6 +124,13 @@ return {
 					cmd = { "fish-lsp", "start" },
 					cmd_env = { fish_lsp_show_client_popups = false },
 				})
+			end,
+		})
+
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = { "Jenkinsfile", "Jenkinsfile.*", "*.Jenkinsfile" },
+			callback = function()
+				vim.bo.filetype = "groovy"
 			end,
 		})
 
@@ -228,6 +249,19 @@ return {
 				vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 					pattern = "*.fish",
 					command = "set filetype=fish",
+				})
+			end,
+		})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("FormatOnSavePS", { clear = true }),
+			pattern = { "*.ps1", "*.psm1", "*.psd1" },
+			callback = function(args)
+				vim.lsp.buf.format({
+					async = false,
+					bufnr = args.buf,
+					filter = function(client)
+						return client.name == "powershell_es"
+					end,
 				})
 			end,
 		})
