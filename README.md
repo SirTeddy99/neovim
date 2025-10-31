@@ -1,3 +1,23 @@
+# Installation
+
+For ubuntu
+
+```bash
+# Update and install dependencies
+sudo apt update
+sudo apt install git make
+
+# Clone your config (it will use master branch by default)
+git clone https://github.com/SirTeddy99/neovim.git ~/.config/nvim
+
+# Go to the directory
+cd ~/.config/nvim
+
+# Run the Makefile
+make install
+```
+
+
  # Git with fugitive
 
 [Doc for fugitive](https//github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt)
