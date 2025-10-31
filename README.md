@@ -3,7 +3,7 @@
 For ubuntu
 
 ```bash
-# Update and install dependencies
+# Update and git and make
 sudo apt update
 sudo apt install git make
 
