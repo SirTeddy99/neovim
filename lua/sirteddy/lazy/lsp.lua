@@ -36,6 +36,7 @@ return {
                 "jsonls",
                 -- "groovyls",
                 "powershell_es",
+                "omnisharp",
             },
             handlers = {
                 -- Default handler (no semanticTokensProvider removal here)
@@ -83,6 +84,22 @@ return {
                         on_attach = function(client)
                             client.server_capabilities.semanticTokensProvider = nil
                         end,
+                    })
+                end,
+                ["omnisharp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.omnisharp.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            FormattingOptions = {
+                                EnableEditorConfigSupport = true,
+                                OrganizeImports = true,
+                            },
+                            RoslynExtensionsOptions = {
+                                EnableAnalyzersSupport = true,
+                                EnableImportCompletion = true,
+                            },
+                        },
                     })
                 end,
                 -- Custom handler for gopls
@@ -265,6 +282,20 @@ return {
                 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
                     pattern = "*.fish",
                     command = "set filetype=fish",
+                })
+                -- dotnet
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    group = vim.api.nvim_create_augroup("FormatOnSaveCS", { clear = true }),
+                    pattern = { "*.cs" },
+                    callback = function(args)
+                        vim.lsp.buf.format({
+                            async = false,
+                            bufnr = args.buf,
+                            filter = function(client)
+                                return client.name == "omnisharp"
+                            end,
+                        })
+                    end,
                 })
             end,
         })
