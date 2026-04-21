@@ -46,8 +46,15 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.api.nvim_set_keymap("n", "<leader>b", ":BlamerToggle<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
-end)
+	local ft = vim.bo.filetype
+	if ft == "lua" then
+		vim.cmd("luafile %")
+	elseif ft == "vim" then
+		vim.cmd("source %")
+	else
+		vim.notify("Not a Lua/Vim file (ft=" .. ft .. ")", vim.log.levels.WARN)
+	end
+end, { desc = "Source current file (Lua/Vim only)" })
 
 -- Move Lines
 vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
@@ -59,17 +66,20 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 vim.api.nvim_set_keymap("n", "<leader>af", ":Autoformat<CR>", { noremap = true, silent = true })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("lazyvim_highlight_yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
 -- Map ,s to surround with quotes in visual mode
 vim.api.nvim_set_keymap("v", ',s"', '<ESC>`<i"<ESC>`>a"<ESC>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ",s'", "<ESC>`<i'<ESC>`>a'<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ",s(", "<ESC>`<i(<ESC>`>a)<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ",s{", "<ESC>`<i{<ESC>`>a}<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ",s[", "<ESC>`<i[<ESC>`>a]<ESC>", { noremap = true, silent = true })
+
+-- Terminal mode: <C-w>+direction jumps windows without the <C-\><C-n> dance
+vim.keymap.set("t", "<C-w>h", [[<C-\><C-n><C-w>h]])
+vim.keymap.set("t", "<C-w>j", [[<C-\><C-n><C-w>j]])
+vim.keymap.set("t", "<C-w>k", [[<C-\><C-n><C-w>k]])
+vim.keymap.set("t", "<C-w>l", [[<C-\><C-n><C-w>l]])
+vim.keymap.set("t", "<C-w><Left>",  [[<C-\><C-n><C-w>h]])
+vim.keymap.set("t", "<C-w><Down>",  [[<C-\><C-n><C-w>j]])
+vim.keymap.set("t", "<C-w><Up>",    [[<C-\><C-n><C-w>k]])
+vim.keymap.set("t", "<C-w><Right>", [[<C-\><C-n><C-w>l]])
+vim.keymap.set("t", "<C-w>w", [[<C-\><C-n><C-w>w]])

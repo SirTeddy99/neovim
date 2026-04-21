@@ -85,6 +85,10 @@ make install
 - `\<leader>vca` Autofix with LSP (needs proper setup)
 - `=` Auto indents
 
+### Reload config
+
+- `<leader><leader>` Source current file (Lua or Vim only, warns otherwise)
+
 ## go-code
 
 - `gd` Go to definition
@@ -98,6 +102,58 @@ make install
 - `<leader>vrn` Rename symbol
 - `<C-h>` Show signature help
 
+## Debugging (DAP)
+
+Adapters for Go (delve) and .NET (netcoredbg) are wired up in `lua/sirteddy/lazy/dlv.lua`.
+
+### General
+
+- `<leader>1` Continue
+- `<leader>7` Step over
+- `<leader>8` Step into
+- `<leader>9` Step out
+- `<leader>db` Toggle breakpoint
+- `<leader>dB` Set conditional breakpoint
+- `<leader>dc` Start / continue debug
+- `<leader>di` Step into
+- `<leader>do` Step over
+- `<leader>dO` Step out
+- `<leader>dx` Terminate debug session
+- `<leader>du` Toggle DAP UI
+- `<leader>dr` Open REPL
+- `<leader>dl` Run last
+
+### Go
+
+- `<leader>dt` Debug Go test
+
+### .NET (C#)
+
+Builds expected in `./bin/Debug/**.dll`. If multiple DLLs are found, a prompt asks which one to launch.
+
+## Claude Code
+
+From `lua/sirteddy/lazy/claudecode.lua` — requires the `claudecode` plugin.
+
+### Session
+
+- `<leader>cc` Toggle Claude Code terminal
+- `<leader>cf` Focus Claude Code
+- `<leader>cr` Resume session
+- `<leader>cC` Continue last session
+- `<leader>cm` Select Claude model
+
+### Context
+
+- `<leader>cb` Add current buffer to Claude
+- `<leader>cs` (visual) Send selection to Claude
+- `<leader>cs` (in netrw / oil / NvimTree / neo-tree / mini.files) Add file under cursor
+
+### Diff handling
+
+- `<leader>ca` Accept Claude diff
+- `<leader>cd` Deny Claude diff
+
 ## Visual-block
 
 [Link to doc](https://neovim.io/doc/user/visual.html)
@@ -110,6 +166,14 @@ make install
 
 - `crtl + z` go to terminal
 - `fg + enter` to return to nvim
+
+### Terminal mode window navigation
+
+Jump between windows from a `:terminal` buffer without the `<C-\><C-n>` dance.
+
+- `<C-w>h` / `<C-w>j` / `<C-w>k` / `<C-w>l` Move to window left/down/up/right
+- `<C-w><Left>` / `<Down>` / `<Up>` / `<Right>` Same, with arrow keys
+- `<C-w>w` Cycle to next window
 
 ## splitt view
 
