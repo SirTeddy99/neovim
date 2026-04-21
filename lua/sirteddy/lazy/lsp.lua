@@ -90,6 +90,15 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.omnisharp.setup({
                         capabilities = capabilities,
+                        cmd = {
+                            "omnisharp",
+                            "--languageserver",
+                            "--hostPID",
+                            tostring(vim.fn.getpid())
+                        },
+                        cmd_env = {
+                            FrameworkPathOverride = "/usr/lib/mono/4.8-api/",
+                        },
                         settings = {
                             FormattingOptions = {
                                 EnableEditorConfigSupport = true,
@@ -283,20 +292,6 @@ return {
                     pattern = "*.fish",
                     command = "set filetype=fish",
                 })
-                -- dotnet
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = vim.api.nvim_create_augroup("FormatOnSaveCS", { clear = true }),
-                    pattern = { "*.cs" },
-                    callback = function(args)
-                        vim.lsp.buf.format({
-                            async = false,
-                            bufnr = args.buf,
-                            filter = function(client)
-                                return client.name == "omnisharp"
-                            end,
-                        })
-                    end,
-                })
             end,
         })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -308,6 +303,20 @@ return {
                     bufnr = args.buf,
                     filter = function(client)
                         return client.name == "powershell_es"
+                    end,
+                })
+            end,
+        })
+        -- dotnet
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("FormatOnSaveCS", { clear = true }),
+            pattern = { "*.cs" },
+            callback = function(args)
+                vim.lsp.buf.format({
+                    async = false,
+                    bufnr = args.buf,
+                    filter = function(client)
+                        return client.name == "omnisharp"
                     end,
                 })
             end,
